@@ -14,7 +14,7 @@ import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
 import edu.umd.cloud9.collection.wikipedia.language.EnglishWikipediaPage;
 
 public class WikiSearch {
-    public static void runJob(String[] input, String output) throws Exception {
+    public static void runInvertedIndexJob(String[] input, String output) throws Exception {
         Configuration conf = new Configuration();
         
         Job job = Job.getInstance(conf);
@@ -23,9 +23,9 @@ public class WikiSearch {
 
         job.setJarByClass(WikiSearch.class);
         
-        job.setReducerClass(WikiSearchReducer.class);
+        job.setReducerClass(WikiSearchInvertedIndexReducer.class);
         
-        job.setMapperClass(WikiSearchMapper.class);
+        job.setMapperClass(WikiSearchInvertedIndexMapper.class);
    
         /*job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
@@ -49,6 +49,6 @@ public class WikiSearch {
     }
 
     public static void main(String[] args) throws Exception {
-        runJob(Arrays.copyOfRange(args, 0, args.length - 1), args[args.length - 1]);
+        runInvertedIndexJob(Arrays.copyOfRange(args, 0, args.length - 1), args[args.length - 1]);
     }
 }
