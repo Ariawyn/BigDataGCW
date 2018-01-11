@@ -36,8 +36,8 @@ public class WikiSearch {
 	job.setInputFormatClass(SequenceFileInputFormat.class);
 	job.setOutputFormatClass(SequenceFileOutputFormat.class);
 
-	job.setOutputKeyClass(IntWritable.class);
-	job.setOutputValueClass(EnglishWikipediaPage.class);
+	job.setOutputKeyClass(Text.class);
+	job.setOutputValueClass(Text.class);
         
         Path outputPath = new Path(output);
         
