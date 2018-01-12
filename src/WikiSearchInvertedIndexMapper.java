@@ -7,9 +7,9 @@ import org.apache.hadoop.io.Text;
 import edu.umd.cloud9.collection.wikipedia.language.EnglishWikipediaPage;
 
 
-public class WikiSearchInvertedIndexMapper extends Mapper<IntWritable, EnglishWikipediaPage, Text, Text> { 
+public class WikiSearchInvertedIndexMapper extends Mapper<IntWritable, EnglishWikipediaPage, Text, Text> {
     public void map(IntWritable nid, EnglishWikipediaPage page,	Context context) throws IOException, InterruptedException {
-	// Make sure the page we are checking is actually and article
+        // Make sure the page we are checking is actually and article
         if(page != null)
         {
             // We check the page is actually an article
@@ -30,7 +30,7 @@ public class WikiSearchInvertedIndexMapper extends Mapper<IntWritable, EnglishWi
                     // We want to get all the words in the content so we split the string
                     String[] words = content.split("\\W+");
 
-                    // Now, for every word, we want to emit the word as key, and the article title    
+                    // Now, for every word, we want to emit the word as key, and the article title
                     for(String word : words) {
                         // First, check for any punctuation or some such that might make the word not be correct
                         word = word.replaceAll("[^\\w]", "");
