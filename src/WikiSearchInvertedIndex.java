@@ -13,39 +13,40 @@ import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
 
 import edu.umd.cloud9.collection.wikipedia.language.EnglishWikipediaPage;
 
-public class WikiSearch {
+public class WikiSearchInvertedIndex {
+
     public static void runInvertedIndexJob(String[] input, String output) throws Exception {
         Configuration conf = new Configuration();
-        
+
         Job job = Job.getInstance(conf);
 
-	conf.set("mapreduce.child.java.opts", "-Xmx2048m");
+        conf.set("mapreduce.child.java.opts", "-Xmx2048m");
 
-        job.setJarByClass(WikiSearch.class);
-        
+        job.setJarByClass(WikiSearchInvertedIndex.class);
+
         job.setReducerClass(WikiSearchInvertedIndexReducer.class);
-        
+
         job.setMapperClass(WikiSearchInvertedIndexMapper.class);
-   
+
         /*job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
 
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(IntWritable.class);*/
 
-	job.setInputFormatClass(SequenceFileInputFormat.class);
-	job.setOutputFormatClass(SequenceFileOutputFormat.class);
+        job.setInputFormatClass(SequenceFileInputFormat.class);
+        job.setOutputFormatClass(SequenceFileOutputFormat.class);
 
-	job.setOutputKeyClass(Text.class);
-	job.setOutputValueClass(Text.class);
-        
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(Text.class);
+
         Path outputPath = new Path(output);
-        
+
         FileInputFormat.setInputPaths(job, StringUtils.join(input, ","));
         FileOutputFormat.setOutputPath(job, outputPath);
 
         outputPath.getFileSystem(conf).delete(outputPath, true);
-        job.waitForCompletion(true); 
+        job.waitForCompletion(true);
     }
 
     public static void main(String[] args) throws Exception {

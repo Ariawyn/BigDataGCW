@@ -29,7 +29,7 @@ public class WikiSearchInvertedIndexReducer extends Reducer<Text, Text, Text, Te
                 // If it does we want to get the count of times the word has already appeared in that specified article
                 // Note: this has to be casted to an int as the hashmap type stores its value as just an Object type
                 int count = (int) map.get(title);
-                
+
                 // and increment it
                 count = count + 1;
 
@@ -42,7 +42,7 @@ public class WikiSearchInvertedIndexReducer extends Reducer<Text, Text, Text, Te
                 map.put(title, 1);
             }
         }
-        
+
         // Then we write to the context the word key, and its associated map of frequency in any articles it appeared in
         // this essentially creates the inverted index
         context.write(wordKey, new Text(map.toString()));
