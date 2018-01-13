@@ -1,3 +1,5 @@
+package com.grouph.wikisearch;
+
 import java.util.Arrays;
 
 import org.apache.commons.lang.StringUtils;

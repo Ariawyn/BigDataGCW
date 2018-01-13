@@ -1,3 +1,5 @@
+package com.grouph.wikisearch;
+
 import java.io.IOException;
 
 import org.apache.hadoop.io.IntWritable;
@@ -5,7 +7,6 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.io.Text;
 
 import edu.umd.cloud9.collection.wikipedia.language.EnglishWikipediaPage;
-
 
 public class WikiSearchInvertedIndexMapper extends Mapper<IntWritable, EnglishWikipediaPage, Text, Text> {
     public void map(IntWritable nid, EnglishWikipediaPage page,	Context context) throws IOException, InterruptedException {
