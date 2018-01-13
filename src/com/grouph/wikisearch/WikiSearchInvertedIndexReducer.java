@@ -1,12 +1,10 @@
+package com.grouph.wikisearch;
 
 import java.io.IOException;
-
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.io.Text;
-
 import java.util.HashMap;
-
 import edu.umd.cloud9.collection.wikipedia.language.EnglishWikipediaPage;
 
 public class WikiSearchInvertedIndexReducer extends Reducer<Text, Text, Text, Text> {
@@ -14,7 +12,7 @@ public class WikiSearchInvertedIndexReducer extends Reducer<Text, Text, Text, Te
 
         // A hashmap that stores the article name as key
         // and the amount of occurances of the word as the value
-        HashMap map = new HashMap();
+        HashMap<String, Integer> map = new HashMap<>();
 
         // For every article title assoiciated with the wordKey
         for(Text articleTitleText: values)
