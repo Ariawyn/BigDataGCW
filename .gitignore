@@ -24,3 +24,7 @@ hs_err_pid*
 testout/
 
 *.swp
+
+*.swo
+
+*.txt
